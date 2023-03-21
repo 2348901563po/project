@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../Styles/Createaccount.module.css'
 
 const Newuser = () =>{
     return(

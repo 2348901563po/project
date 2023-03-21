@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from '../Styles/Createreport.module.css'
 const Report = () =>{
     return(
         <div>

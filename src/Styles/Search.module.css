@@ -1,0 +1,42 @@
+html{
+    width: 100%;
+    height: 100vh;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+}
+
+.name{
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+    margin: auto;
+    width: 80%;
+    height: 100vh;
+}
+
+.searchbar{
+    width: 100%;
+    height: 50%;
+}
+
+.search{
+    width: 100%;
+    padding: 2vh;
+    border-radius: 12px;
+    border: 3px solid black;
+    margin-top: 45vh;
+}
+
+.button{
+    width: 100%;
+    padding: 1.5vh;
+    margin-top: 10vh;
+    font: 30px bold;
+    border-radius: 12px;
+    border: 3px solid black;
+}
