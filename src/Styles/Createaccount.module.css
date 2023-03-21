@@ -1,0 +1,45 @@
+::placeholder{
+    font-size: 30px;
+}
+
+html{
+    width: 100vw;
+    height: 100vh;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+.form{
+    text-align: center;
+    width: 80vw;
+    margin: auto;
+}
+
+.title{
+    text-align: center;
+    color: #F18E2E;
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.inputs{
+    margin-top: 5vh;
+    width: 55vw;
+    padding: 2.5vh;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.btn{
+    margin-top: 5vh;
+    font-size: 35px;
+    width: 60vw;
+    border-radius: 20px;
+    padding: 2vh;
+    color: black;
+    background-color: #F18E2E;
+}

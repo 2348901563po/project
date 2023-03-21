@@ -1,0 +1,35 @@
+.title{
+    font-size: 80px;
+    text-align: center;
+    font-weight: bold;
+    color: #F18E2E;
+    margin-top: 3vh;
+}
+
+.inputs{
+    width: 90%;
+    padding: 2.5vh;
+    margin-top: 5vh;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.form{
+    width: 85%;
+    height: 70%;
+    margin: auto;
+    margin-bottom: auto;
+}
+::placeholder{
+    font-size: 30px;
+}
+
+.btn{
+    width: 85vw;
+    padding: 2vh;
+    margin-top: 5vh;
+    font-size: 35px;
+    color: #F18E2E;
+    border-radius: 20px;
+    background-color: black;
+}

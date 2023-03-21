@@ -3,21 +3,24 @@ import styles from '../Styles/Createreport.module.css'
 const Report = () =>{
     return(
         <div>
-            <form action="http://localhost:1234/api" method='post'>
+            <div className={styles.title}>Report</div>
+            <form action="http://localhost:1234/api" method='post' className={styles.form}>
                 <div>
                     <label htmlfor="Name"></label>
-                    <input name="OperatorName" type='text' placeholder="Name"></input>
+                    <input name="OperatorName" type='text' placeholder="Name" className={styles.input}></input>
                 </div>
                 <div>
                     <label htmlfor='temperature'></label>
-                    <input name='temperature' type='text' placeholder='temperature'></input>
+                    <input name='temperature' type='text' placeholder='temperature' className={styles.input}></input>
                 </div>
-                <select name="field">
-                    <option>Stuart</option>
-                    <option>Splash</option>
-                    <option>Annie</option>
+                <select name="field" className={styles.input}>
+                    <option value='' disabled className={styles.option}>select a field</option>
+                    <option className={styles.option}>Stuart</option>
+                    <option className={styles.option}>Splash</option>
+                    <option className={styles.option}>Annie</option>
                 </select>
-                <select name="herbicide">
+                <select name="herbicide" className={styles.input} placeholder='herbicide'>
+                    <option value='' disabled>select a herbicide</option>
                     <option>Gly-4 Herbicide</option>
                     <option>Buccaneer</option>
                     <option>Interline Herbicide</option>
@@ -42,14 +45,17 @@ const Report = () =>{
                 </select>
                 <div>
                     <label htmlfor='rate'></label>
-                    <input name='rate' type='text' placeholder='rate of application'></input>
+                    <input name='rate' type='text' placeholder='rate of application' className={styles.input}></input>
                 </div>
                 <div>
                     <label htmlfor='targetedpests'></label>
-                    <input name='targetedpests' type='text' placeholder='Pests Targeted'></input>
+                    <input name='targetedpests' type='text' placeholder='Pests Targeted' className={styles.input}></input>
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <textarea className={styles.texta}></textarea>
+                </div>
+                <div>
+                    <button type="submit" className={styles.btn}>Submit</button>
                 </div>
             </form>
         </div>

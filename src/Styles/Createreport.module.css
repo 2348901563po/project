@@ -1,0 +1,48 @@
+.title{
+    font-size: 80px;
+    text-align: center;
+    font-weight: bold;
+    color: #F18E2E;
+    margin-top: 3vh;
+}
+
+.form{
+    width: 85%;
+    height: 70%;
+    margin: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+::placeholder{
+    font-size: 30px;
+}
+
+.input{
+    width: 90%;
+    padding: 2.5vh;
+    margin-top: 5vh;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.btn{
+    width: 60vw;
+    padding: 2vh;
+    margin-top: 5vh;
+    font-size: 35px;
+    color: #F18E2E;
+    border-radius: 20px;
+    background-color: black;
+}
+
+.texta{
+    margin-top: 2vh;
+    width: 80%;
+    height: 10vh;
+    border: 2px solid black;
+}
+
+.option{
+    font-size: 20px;
+}
