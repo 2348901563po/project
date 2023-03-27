@@ -3,6 +3,14 @@ import styles from '../Styles/Createaccount.module.css'
 import { useState } from 'react';
 
 const Newuser = () =>{
+        const [pass1, updatepass1] = useState('');
+        const [pass2, updatepass2] = useState('');
+        let match;
+        if(pass1==pass2){
+            match=''
+        }else{
+            match='make sure that your passwords match';
+        }
     return(
         <div>
             <div className={styles.title}>Sign Up</div>
@@ -21,14 +29,13 @@ const Newuser = () =>{
                 </div>
                 <div>
                     <label htmlfor='password'></label>
-                    <input type='text' name='password' placeholder='password' className={styles.inputs}></input>
+                    <input type='text' name='password' placeholder='password' className={styles.inputs} onChange={e => updatepass1(e.target.value)}></input>
                 </div>
                 <div>
                     <label htmlfor='repassword'></label>
-                    <input type='text' name='repassword' placeholder='retype password' className={styles.inputs}></input>
+                    <input type='text' name='repassword' placeholder='retype password' className={styles.inputs} onChange={e=> updatepass2(e.target.value)}></input>
                 </div>
-                <div>
-                </div>
+                <div className={styles.check}>{match}</div>
                 <button type='submit' className={styles.btn}>Submit</button>
             </form>
         </div>

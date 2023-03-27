@@ -7,6 +7,7 @@ import Search from './Pages/Search';
 import Report from './Pages/CreateReport';
 import Field from './Pages/CreateField';
 import Newuser from './Pages/CreateAccount';
+import Logout from './Pages/LogOut';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/user" element={<Newuser />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/field" element={<Field />} />
           <Route path="/report" element={<Report />} />
           <Route path="/search" element={<Search />} />

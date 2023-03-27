@@ -1,10 +1,14 @@
 import React from "react";
-import styles from '../Styles/Createreport.module.css'
+import styles from '../Styles/Createreport.module.css';
+import { useNavigate } from "react-router-dom";
+
 const Report = () =>{
+    const navigate = useNavigate();
     return(
         <div>
             <div className={styles.title}>Report</div>
-            <form action="http://localhost:1234/api" method='post' className={styles.form}>
+            <button onClick={()=>{navigate(-1)}}>Back</button>
+            <form action="http://localhost:1234/report" method='post' className={styles.form}>
                 <div>
                     <label htmlfor="Name"></label>
                     <input name="OperatorName" type='text' placeholder="Name" className={styles.input}></input>
@@ -48,11 +52,15 @@ const Report = () =>{
                     <input name='rate' type='text' placeholder='rate of application' className={styles.input}></input>
                 </div>
                 <div>
+                    <label htmlfor='gallons'></label>
+                    <input name='gallons' type='text' placeholder='gallons' className={styles.input}></input>
+                </div>
+                <div>
                     <label htmlfor='targetedpests'></label>
                     <input name='targetedpests' type='text' placeholder='Pests Targeted' className={styles.input}></input>
                 </div>
                 <div>
-                    <textarea className={styles.texta}></textarea>
+                    <textarea name='comments' className={styles.texta}></textarea>
                 </div>
                 <div>
                     <button type="submit" className={styles.btn}>Submit</button>
