@@ -9,6 +9,36 @@ import Field from './Pages/CreateField';
 import Newuser from './Pages/CreateAccount';
 import Logout from './Pages/LogOut';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, createContext, useContext } from 'react';
+
+const athcontext = createContext();
+
+
+/*
+const Auth = ({App}) =>{
+  const useAuthorize = () =>{
+    const [errors, updateErrors] = useState(null);
+
+    function signin(user, pass){
+      fetch('../server/index.js',{
+        method: "POST",
+        body: JSON.stringify({
+          email: `'${user}'`,
+          Password: `'${pass}'`,
+      }).then(res=>{
+        return res
+      })
+      }
+
+      )
+    }
+  }
+  const Authorization = useAuthorize();
+  <athcontext.Provider value={Authorization}>{App}</athcontext.Provider>
+}
+
+
+*/
 
 function App() {
   return (

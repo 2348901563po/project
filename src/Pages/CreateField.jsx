@@ -3,7 +3,8 @@ import styles from '../Styles/Createfield.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const Field = () =>{
-    const navigate = useNavigate()
+    
+    /*const navigate = useNavigate()*/
     return(
         <div className={styles.container}>
             <div className={styles.title}>Create Field</div>
@@ -26,7 +27,7 @@ const Field = () =>{
                 </div>
                 <button type='submit' className={styles.btn}>Submit</button>
             </form>
-            <button onClick={()=>{navigate(-1)}}>Back</button>
+            <button>Back</button>
         </div>
     )
 }

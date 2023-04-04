@@ -1,29 +1,25 @@
 import React from "react";
 import styles from '../Styles/Login.module.css'
 import { useNavigate } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
+/*
 function Login(){
-    const navigate = useNavigate();
-    let response;
-    useEffect(
-        ()=>{
-            response = fetch('/')
-        }
-    )
-    const Handlesubmit = ()=>{
-        if(response=="Not A user"){
-            navigate('/')
-        }else{
-            navigate('/home');
-        }
-    }
+    const [user, updateUsername] = useState();
+    const [pass, updatePass] = useState();
 
+    const Handlesubmit = ()=>{
+        const navigate = useNavigate();
+        navigate('/home')
+    }
+*/
+function Login(){
+    /*const navigate = useNavigate();*/
     return(
         <div>
             <div className={styles.title}>Login</div>
-            <form action="http://localhost:1234" method='POST' className={styles.form} onSubmit={Handlesubmit}>
+            <form action="http://localhost:1234/" method='POST' className={styles.form}>
                 <div>
                     <label htmlfor='email'></label>
                     <input type='text' name='email' placeholder='email' className={styles.inputs}></input>

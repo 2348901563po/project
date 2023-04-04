@@ -1,8 +1,29 @@
 import React from "react";
 import styles from '../Styles/Createreport.module.css';
 import { useNavigate } from "react-router-dom";
-
+import {useState, useEffect} from 'react';
 const Report = () =>{
+    const [f, changefieldnames] = useState()
+    useEffect(()=>{
+        fetch('http://localhost:1234/names')
+            .then(res=>{
+                if (res.ok){
+                    console.log('Success')
+                    return res.json()
+                    /*console.log(res.json())*/
+                }else{
+                    console.log("Not a Success")
+                }
+            })
+        .then(res=>{
+            changefieldnames(
+                res.map(function(n){
+                    return(<option key={n.fieldid}>{`'${n.Name1}'`}</option>)
+                }))}
+        )
+    }, [])
+    console.log(f)
+        /*let data2 = data1.map(`<option>'+'${data1.name}'+'</option>`)*/
     const navigate = useNavigate();
     return(
         <div>
@@ -10,18 +31,17 @@ const Report = () =>{
             <button onClick={()=>{navigate(-1)}}>Back</button>
             <form action="http://localhost:1234/report" method='post' className={styles.form}>
                 <div>
-                    <label htmlfor="Name"></label>
+                    <label htmlFor="Name"></label>
                     <input name="OperatorName" type='text' placeholder="Name" className={styles.input}></input>
                 </div>
                 <div>
-                    <label htmlfor='temperature'></label>
+                    <label htmlFor='temperature'></label>
                     <input name='temperature' type='text' placeholder='temperature' className={styles.input}></input>
                 </div>
                 <select name="field" className={styles.input}>
                     <option value='' disabled className={styles.option}>select a field</option>
                     <option className={styles.option}>Stuart</option>
-                    <option className={styles.option}>Splash</option>
-                    <option className={styles.option}>Annie</option>
+                    {f}
                 </select>
                 <select name="herbicide" className={styles.input} placeholder='herbicide'>
                     <option value='' disabled>select a herbicide</option>
@@ -48,15 +68,15 @@ const Report = () =>{
                     <option>Hatchet Insecticide</option>
                 </select>
                 <div>
-                    <label htmlfor='rate'></label>
+                    <label htmlFor='rate'></label>
                     <input name='rate' type='text' placeholder='rate of application' className={styles.input}></input>
                 </div>
                 <div>
-                    <label htmlfor='gallons'></label>
+                    <label htmlFor='gallons'></label>
                     <input name='gallons' type='text' placeholder='gallons' className={styles.input}></input>
                 </div>
                 <div>
-                    <label htmlfor='targetedpests'></label>
+                    <label htmlFor='targetedpests'></label>
                     <input name='targetedpests' type='text' placeholder='Pests Targeted' className={styles.input}></input>
                 </div>
                 <div>
@@ -70,7 +90,12 @@ const Report = () =>{
     )
 };
 
-
+const Newops = (props) =>{
+    const f = props.f;
+        f.map(function(n){
+            return(<option key={n.fieldid}>{`'${n.Name1}'`}</option>)
+        })
+}
 export default Report;
 
 /*
