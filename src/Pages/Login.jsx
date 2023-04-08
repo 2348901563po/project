@@ -15,18 +15,48 @@ function Login(){
     }
 */
 function Login(){
-    /*const navigate = useNavigate();*/
+    const navigate = useNavigate();
+    const [user, updateUsername] = useState('');
+    const [pass, updatePass] = useState('');
+    const handlesubmit = (e) =>{
+        e.preventDefault()
+        fetch('http://localhost:1234/', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: `"${user}"`,
+                password: `"${pass}"`,   
+            })
+        }).then(res=>{
+            return res.json()
+        }).then(res=>{
+            if(res.res=='not a current user'){
+                navigate('/');
+                console.log('Hey')
+            }if(res.res=='A current user'){
+                navigate('/home');
+            }else{
+                navigate('/')
+                console.log(res)
+            }
+        }
+        )
+    }
+
+
     return(
         <div>
             <div className={styles.title}>Login</div>
-            <form action="http://localhost:1234/" method='POST' className={styles.form}>
+            <form action="http://localhost:1234/" method='POST' className={styles.form} onSubmit={handlesubmit}>
                 <div>
-                    <label htmlfor='email'></label>
-                    <input type='text' name='email' placeholder='email' className={styles.inputs}></input>
+                    <label htmlFor='email'></label>
+                    <input type='text' name='email' placeholder='email' className={styles.inputs} onChange={e=>updateUsername(e.target.value)}></input>
                 </div>
                 <div>
-                    <label htmlfor='password'></label>
-                    <input type='text' name='password' placeholder='Password' className={styles.inputs}></input>
+                    <label htmlFor='password'></label>
+                    <input type='text' name='password' placeholder='Password' className={styles.inputs} onChange={e=>updatePass(e.target.value)}></input>
                 </div>
                 <div>
                     <button type="submit" className={styles.btn}>Submit</button>
@@ -39,7 +69,7 @@ function Login(){
 const Password = ()=>{
     return(
         <div>
-            <label htmlfor='username'></label>
+            <label htmlFor='username'></label>
             <input type='text' name='username' placeholder='Username'></input>
         </div>
     )
