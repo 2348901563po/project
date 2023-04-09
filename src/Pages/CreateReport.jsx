@@ -2,8 +2,59 @@ import React from "react";
 import styles from '../Styles/Createreport.module.css';
 import { useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
+
 const Report = () =>{
-    const [f, changefieldnames] = useState()
+
+    const newdate = ()=>{
+    let date = new Date();
+     let day = date.getDate();
+     let month = date.getMonth()+1;
+     let year = date.getFullYear();
+     if(day<10 && month <10){
+        let todaydate = `${year}/0${month}/0${day}`;
+        return todaydate
+     }if(day<10){
+        let todaydate = `${year}/${month}/0${day}`;
+        return todaydate
+     }if(month <10){
+        let todaydate = `${year}/0${month}/${day}`;
+        return todaydate
+     }else{
+        let todaydate = `${year}/${month}/${day}`;
+        return todaydate
+     }
+    }
+    
+    const navigate = useNavigate();
+    const [f, changefieldnames] = useState('');
+    const [name, changename] = useState('');
+    const [date, changedate] = useState(newdate());
+    const [temp, changetemp] = useState('');
+    const [herbicide, changeherb] = useState('');
+    const [rate, changerate] = useState('');
+    const [gallons, changegallons] = useState('');
+    const [pests, changepests] = useState('');
+    const [comments, changecomments] = useState('');
+    const handlesubmit = (e)=>{
+        e.preventDefault()
+        fetch('http://localhost:1234/report', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                date: `${date}`,
+                temperature: `${temp}`,
+                herbicide: `${herbicide}`, 
+                rate: `${rate}`,
+                gallons: `${gallons}`,
+                targetedpests: `${pests}`, 
+                comments: `${comments}`, 
+                herbicide: `${herbicide}`,    
+            })
+        }).then(navigate('/home'))
+    }
+
     useEffect(()=>{
         fetch('http://localhost:1234/names')
             .then(res=>{
@@ -24,26 +75,29 @@ const Report = () =>{
     }, [])
     console.log(f)
         /*let data2 = data1.map(`<option>'+'${data1.name}'+'</option>`)*/
-    const navigate = useNavigate();
     return(
         <div>
             <div className={styles.title}>Report</div>
             <button onClick={()=>{navigate(-1)}}>Back</button>
-            <form action="http://localhost:1234/report" method='post' className={styles.form}>
+            <form action="http://localhost:1234/report" method='post' className={styles.form} onSubmit={handlesubmit}>
                 <div>
                     <label htmlFor="Name"></label>
-                    <input name="OperatorName" type='text' placeholder="Name" className={styles.input}></input>
+                    <input name="OperatorName" type='text' placeholder="Name" onChange={e=>changename(e.target.value)}className={styles.input}></input>
+                </div>
+                <div>
+                    <label htmlFor="Date"></label>
+                    <input name="Date" type='text' placeholder={date} onChange={e=>changedate(e.target.value)}className={styles.input}></input>
                 </div>
                 <div>
                     <label htmlFor='temperature'></label>
-                    <input name='temperature' type='text' placeholder='temperature' className={styles.input}></input>
+                    <input name='temperature' type='text' placeholder='temperature' className={styles.input} onChange={e=>changetemp(e.target.value)}></input>
                 </div>
                 <select name="field" className={styles.input}>
                     <option value='' disabled className={styles.option}>select a field</option>
                     <option className={styles.option}>Stuart</option>
                     {f}
                 </select>
-                <select name="herbicide" className={styles.input} placeholder='herbicide'>
+                <select name="herbicide" className={styles.input} placeholder='herbicide' onChange={e=>changeherb(e.target.value)}>
                     <option value='' disabled>select a herbicide</option>
                     <option>Gly-4 Herbicide</option>
                     <option>Buccaneer</option>
@@ -69,18 +123,18 @@ const Report = () =>{
                 </select>
                 <div>
                     <label htmlFor='rate'></label>
-                    <input name='rate' type='text' placeholder='rate of application' className={styles.input}></input>
+                    <input name='rate' type='text' placeholder='rate of application' className={styles.input} onChange={e=>changerate(e.target.value)}></input>
                 </div>
                 <div>
                     <label htmlFor='gallons'></label>
-                    <input name='gallons' type='text' placeholder='gallons' className={styles.input}></input>
+                    <input name='gallons' type='text' placeholder='gallons' className={styles.input} onChange={e=>changegallons(e.target.value)}></input>
                 </div>
                 <div>
                     <label htmlFor='targetedpests'></label>
-                    <input name='targetedpests' type='text' placeholder='Pests Targeted' className={styles.input}></input>
+                    <input name='targetedpests' type='text' placeholder='Pests Targeted' className={styles.input} onChange={e=>changepests(e.target.value)}></input>
                 </div>
                 <div>
-                    <textarea name='comments' className={styles.texta}></textarea>
+                    <textarea name='comments' className={styles.texta} onChange={e=>changecomments(e.target.value)}></textarea>
                 </div>
                 <div>
                     <button type="submit" className={styles.btn}>Submit</button>

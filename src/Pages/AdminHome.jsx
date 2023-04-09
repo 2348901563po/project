@@ -9,6 +9,7 @@ function Home(){
             <button onClick={()=>navigate('/report')}>Create Report</button>
             <button onClick={()=>navigate('/field')}>Create Field</button>
             <button onClick={()=>navigate('/search')}>Search Reports</button>
+            <button onClick={()=>navigate('/')}>Log Out</button>
         </div>
     )
 }
