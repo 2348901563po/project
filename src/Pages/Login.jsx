@@ -3,19 +3,9 @@ import styles from '../Styles/Login.module.css'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 
-
-/*
-function Login(){
-    const [user, updateUsername] = useState();
-    const [pass, updatePass] = useState();
-
-    const Handlesubmit = ()=>{
-        const navigate = useNavigate();
-        navigate('/home')
-    }
-*/
 function Login(){
     const navigate = useNavigate();
+    const [isuser, changeisuser] = useState('');
     const [user, updateUsername] = useState('');
     const [pass, updatePass] = useState('');
     const handlesubmit = (e) =>{
@@ -33,6 +23,7 @@ function Login(){
             return res.json()
         }).then(res=>{
             if(res.res=='not a current user'){
+                changeisuser('Wrong Username or Password')
                 navigate('/');
                 console.log('Hey')
             }if(res.res=='A current user'){
@@ -43,6 +34,10 @@ function Login(){
             }
         }
         )
+    }
+
+    const createAcccount = ()=>{
+        navigate('/user')
     }
 
 
@@ -61,6 +56,8 @@ function Login(){
                 <div>
                     <button type="submit" className={styles.btn}>Submit</button>
                 </div>
+                <div className={styles.wronglogin}>{isuser}</div>
+                <button onClick={createAcccount}>Create Account</button>
             </form>
         </div>
     )

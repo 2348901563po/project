@@ -33,3 +33,7 @@
     border-radius: 20px;
     background-color: #F18E2E;
 }
+
+.wronglogin{
+    color: red;
+}
