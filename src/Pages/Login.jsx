@@ -25,12 +25,12 @@ function Login(){
             if(res.res=='not a current user'){
                 changeisuser('Wrong Username or Password')
                 navigate('/');
-                console.log('Hey')
-            }if(res.res=='A current user'){
+                console.log('Hey');
+            }if(res.res=='A current user' && res.admin == 'true'){
                 navigate('/home');
-            }else{
-                navigate('/')
-                console.log(res)
+            }if(res.res == 'A current user' && res.admin == 'false'){
+                navigate('/report')
+                console.log(res);
             }
         }
         )
