@@ -31,7 +31,15 @@ const Search = () =>{
     }).then(
             res=>changeresults(
                 res.map(function(n){
-                    return <li key={n.idreports}>{`${n.rate}`}</li>
+                    return <li key={n.idreports} className={styles.report}>
+                            <div>{`${n.date}`}</div>
+                            <div>{`${n.herbicide}`}</div>
+                            <div>{`${n.temperature}`}</div>
+                            <div>{`${n.gallonssprayed}`}</div>
+                            <div>{`${n.rate}`}</div>
+                            <div>{`${n.peststargeted}`}</div>
+                            <div>{`${n.comments}`}</div>
+                        </li>
                    })
             )
         )

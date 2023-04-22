@@ -58,15 +58,15 @@ const Newuser = () =>{
                     <input type='text' name='password' placeholder='password' className={styles.inputs} onChange={e => updatepass1(e.target.value)}></input>
                 </div>
                 <div>
-                    <label htmlFor='admin'></label>
-                    <input type='checkbox' name='admin' placeholder='password' onChange={e => istrue(e.target.value)}></input>
-                </div>
-                <div>
                     <label htmlFor='repassword'></label>
                     <input type='text' name='repassword' placeholder='retype password' className={styles.inputs} onChange={e=> updatepass2(e.target.value)}></input>
                 </div>
+                <div>
+                    <label htmlFor='admin'>Check for Admin Account   </label>
+                    <input type='checkbox' name='admin' placeholder='password' className={styles.checkbox} onChange={e => istrue(e.target.value)}></input>
+                </div>
                 <div className={styles.check}>{match}</div>
-                <button type='submit' className={styles.btn}>Submit</button>
+                <button type='submit' className={styles.btn}>Create Account</button>
             </form>
         </div>
     )

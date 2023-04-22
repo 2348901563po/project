@@ -53,11 +53,13 @@ function Login(){
                     <label htmlFor='password'></label>
                     <input type='text' name='password' placeholder='Password' className={styles.inputs} onChange={e=>updatePass(e.target.value)}></input>
                 </div>
+                <div className={styles.new1}>
+                    <button type="submit" className={styles.btn}>Login</button>
+                </div>
                 <div>
-                    <button type="submit" className={styles.btn}>Submit</button>
+                    <button onClick={createAcccount} className={styles.new}>Create Account</button>
                 </div>
                 <div className={styles.wronglogin}>{isuser}</div>
-                <button onClick={createAcccount}>Create Account</button>
             </form>
         </div>
     )

@@ -17,6 +17,13 @@ body{
     text-align: center;
     width: 80vw;
     margin: auto;
+    color:#F18E2E;
+    font-size: 35px;
+}
+
+.checkbox{
+    height: 25px;
+    width: 25px;
 }
 
 .title{

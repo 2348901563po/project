@@ -12,10 +12,10 @@
     flex-direction: row;
     width: 60%;
     border-radius: 35px;
-    background: linear-gradient(to left, #F8FC0D, #F2340B);
-    height: 50px;
+    background-color: #fa8107;
+    height: 70px;
     text-align: left;
-    font-size: 25px;
+    font-size: 35px;
 }
 
 .filler{
