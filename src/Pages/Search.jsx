@@ -2,9 +2,10 @@ import React from "react";
 import styles from '../Styles/Search.module.css';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import JsPDF from 'jspdf';
 
 const Search = () =>{
-    /*const navigate = useNavigate();*/
+    const navigate = useNavigate();
     const [date1, changedate] = useState('');
     const [date2, changedate2] = useState('');
     const [herb, changeherb] = useState('');
@@ -15,6 +16,32 @@ const Search = () =>{
     const [comments, changecomments] = useState('');
     const [response, changeres] = useState('');
     const [results, changeresults] = useState('');
+
+    const generatePDF = ()=>{
+        const Report = new JsPDF('portrait', 'pt', 'a4');
+        Report.html(document.querySelector('#report')).then(()=>{
+            Report.save('report.pdf');
+        });
+    }
+
+    const FinalReport = (props)=>{
+        return(
+            <div>
+                <div key={props.obj.idreports} className={styles.report} id='report'>
+                    <div>{`${props.obj.firstname} ${props.obj.lastname}`}</div>
+                    <div>Date: {`${props.obj.date}`}</div>
+                    <div>Field: {`${props.obj.Name1}`}</div>
+                    <div>Type of Herbicide: {`${props.obj.herbicide}`}</div>
+                    <div>Temperature: {`${props.obj.temperature}`}</div>
+                    <div>gallonssprayed: {`${props.obj.gallonssprayed}`}</div>
+                    <div>Rate: {`${props.obj.rate}`}</div>
+                    <div>Pests Targeted: {`${props.obj.peststargeted}`}</div>
+                    <div>Additional Comments: {`${props.obj.comments}`}</div>
+                </div>
+                <button onClick={generatePDF}>Convert to PDF</button>
+           </div>
+        )
+    }
 
     const retriveresults = ()=>{
         fetch('http://localhost:1234/search', { 
@@ -31,15 +58,7 @@ const Search = () =>{
     }).then(
             res=>changeresults(
                 res.map(function(n){
-                    return <li key={n.idreports} className={styles.report}>
-                            <div>{`${n.date}`}</div>
-                            <div>{`${n.herbicide}`}</div>
-                            <div>{`${n.temperature}`}</div>
-                            <div>{`${n.gallonssprayed}`}</div>
-                            <div>{`${n.rate}`}</div>
-                            <div>{`${n.peststargeted}`}</div>
-                            <div>{`${n.comments}`}</div>
-                        </li>
+                    return <FinalReport obj={n} />
                    })
             )
         )
@@ -48,6 +67,10 @@ const Search = () =>{
     const HandleSubmit = (e)=>{
         e.preventDefault();
         retriveresults();
+    }
+
+    const Home = ()=>{
+        navigate('/home')
     }
 
     return(
@@ -69,7 +92,7 @@ const Search = () =>{
                            {results}
                         </ul>
                     </div>
-                    <button>Back</button>
+                    <button onClick={Home}>Back</button>
             </div>
         </div>
     )

@@ -11,8 +11,6 @@ import Logout from './Pages/LogOut';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, createContext, useContext } from 'react';
 
-const athcontext = createContext();
-
 
 /*
 const Auth = ({App}) =>{
@@ -40,23 +38,26 @@ const Auth = ({App}) =>{
 
 */
 
+export const Usercontext = createContext('');
 function App() {
+  const [login, changelogin] = useState('Admin');
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/user" element={<Newuser />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/field" element={<Field />} />
-          <Route path="/report" element={<Report />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
-      </BrowserRouter>
+      <Usercontext.Provider value={login}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/user" element={<Newuser />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/field" element={<Field />} />
+            <Route path="/report" element={<Report />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </BrowserRouter>
+      </Usercontext.Provider>
     </div>
   );
 }
-
 export default App;

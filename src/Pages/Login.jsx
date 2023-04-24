@@ -1,10 +1,12 @@
 import React from "react";
 import styles from '../Styles/Login.module.css'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import {Usercontext} from '../App.js';
 
 function Login(){
     const navigate = useNavigate();
+    const [user1, changeuser1] = useState('Not a user')
     const [isuser, changeisuser] = useState('');
     const [user, updateUsername] = useState('');
     const [pass, updatePass] = useState('');
@@ -28,12 +30,14 @@ function Login(){
                 console.log('Hey');
             }if(res.res=='A current user' && res.admin == 'true'){
                 navigate('/home');
+                changeuser1('Admin');
             }if(res.res == 'A current user' && res.admin == 'false'){
                 navigate('/report')
                 console.log(res);
+                changeuser1('user');
             }
         }
-        )
+        ).then(res=>console.log(res.userid))
     }
 
     const createAcccount = ()=>{
@@ -56,8 +60,8 @@ function Login(){
                 <div className={styles.new1}>
                     <button type="submit" className={styles.btn}>Login</button>
                 </div>
-                <div>
-                    <button onClick={createAcccount} className={styles.new}>Create Account</button>
+                <div className={styles.link}>
+                    Not a user? <Link to='/user' className={styles.link}>Create An Account</Link>
                 </div>
                 <div className={styles.wronglogin}>{isuser}</div>
             </form>
