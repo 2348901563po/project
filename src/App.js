@@ -43,8 +43,7 @@ function App() {
   const [login, changelogin] = useState('Hello World');
 
   const childtoparent = (data)=>{
-    let data1 = `${data.first} ${data.last}`
-    changelogin(data1)
+    changelogin(data)
   }
   console.log(login)
   return(
@@ -56,7 +55,7 @@ function App() {
             <Route path="/user" element={<Newuser />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/field" element={<Field />} />
-            <Route path="/report" element={<Report data={login}/>} />
+            <Route path="/report" element={<Report />} />
             <Route path="/search" element={<Search />} />
             <Route path="/home" element={<Home />} />
             <Route path="/settings" element={<Settings />} />

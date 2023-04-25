@@ -77,6 +77,7 @@ const Search = () =>{
         <div className={styles.container}>
             <div className={styles.name}>
                 <div className={styles.title}>Search</div>
+                    <div className={styles.warning}>Make sure to enter in the form 0000-00-00</div>
                     <form action="http://localhost:1234/search" method='POST' onSubmit={HandleSubmit}>
                         <label htmlFor="startdate">
                             <input name='startdate' type='text' placeholder='0000-00-00' className={styles.search} onChange={e=>{changedate(e.target.value)}}></input>

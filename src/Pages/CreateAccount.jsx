@@ -11,6 +11,7 @@ const Newuser = () =>{
         const [email, updateemail] = useState('');
         const [first, updatefirst] = useState('');
         const [last, updatelast] = useState('');
+        const [emailerror, updateemailerror] = useState('');
         let match;
         if(pass1==pass2){
             match=''
@@ -20,6 +21,11 @@ const Newuser = () =>{
 
         const handleSubmit = (e) =>{
             e.preventDefault()
+            /* General expression for email verification retrieved from https://www.w3resource.com/javascript/form/email-validation.php */
+            if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)==false){
+                updateemailerror('Make sure that you enter a valid email')
+                return null
+            }
             fetch('http://localhost:1234/user', {
             method: 'POST',
             headers: {
@@ -59,6 +65,7 @@ const Newuser = () =>{
                     <label htmlFor='email'></label>
                     <input type='text' name='email' placeholder='email' className={styles.inputs} onChange={e=>updateemail(e.target.value)}></input>
                 </div>
+                <div>{emailerror}</div>
                 <div>
                     <label htmlFor='password'></label>
                     <input type='text' name='password' placeholder='password' className={styles.inputs} onChange={e => updatepass1(e.target.value)}></input>

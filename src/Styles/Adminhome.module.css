@@ -10,12 +10,12 @@
 .button{
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 65%;
     border-radius: 35px;
     background-color: #fa8107;
-    height: 70px;
+    height: 80px;
     text-align: left;
-    font-size: 35px;
+    font-size: 40px;
 }
 
 .filler{

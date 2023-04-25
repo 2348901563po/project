@@ -10,7 +10,7 @@ const Report = (props) =>{
     const fieldval = useContext(Usercontext);
     {console.log(fieldval)}
 
-
+    const [refresh, changerefresh] = useState()
     /*Use 3rd Party API to get weather data */
     const [currenttemp, changecurrenttemp] = useState();
     useEffect(()=>{
@@ -69,13 +69,14 @@ const Report = (props) =>{
     const [f, changefieldnames] = useState('');
     const [name, changename] = useState('');
     const [date, changedate] = useState(newdate());
-    const [temp, changetemp] = useState('');
-    const [herbicide, changeherb] = useState('');
+    const [temp, changetemp] = useState(currenttemp);
+    const [herbicide, changeherb] = useState('Gly-4 Herbicide');
     const [rate, changerate] = useState('');
     const [gallons, changegallons] = useState('');
     const [pests, changepests] = useState('');
     const [comments, changecomments] = useState('');
-    const [field, changefield] = useState(1);
+    const [field, changefield] = useState(27);
+    const [userid, changeuserid] = useState(fieldval.userid);
 
 
     /*Handles the submission of the form through an API */
@@ -95,9 +96,16 @@ const Report = (props) =>{
                 targetedpests: `${pests}`, 
                 comments: `${comments}`, 
                 herbicide: `${herbicide}`, 
-                field: `${field}`   
+                field: `${field}`,
+                userid: userid,  
             })
-        }).then(navigate('/home'))
+        })
+        if(fieldval.admin=='false'){
+            changerefresh('true')
+            navigate('/report')
+        }if(fieldval.admin=='true'){
+            navigate('/home')
+        }
     }
     /*Loads all of the select statements */
     useEffect(()=>{
@@ -114,7 +122,7 @@ const Report = (props) =>{
         .then(res=>{
             changefieldnames(
                 res.map(function(n){
-                    return(<option key={n.fieldid} value={n.fieldid}>{`'${n.Name1}'`}</option>)
+                    return(<option key={n.fieldid} value={n.fieldid}>{`${n.Name1}`}</option>)
                 }))}
         )
     }, [])
@@ -126,7 +134,7 @@ const Report = (props) =>{
             <form action="http://localhost:1234/report" method='post' className={styles.form} onSubmit={handlesubmit}>
                 <div>
                     <label htmlFor="Name"></label>
-                    <input name="OperatorName" type='text' defaultValue={fieldval} onChange={e=>changename(e.target.value)} className={styles.input}></input>
+                    <input name="OperatorName" type='text' defaultValue={`${fieldval.first} ${fieldval.last}`} onChange={e=>changename(e.target.value)} className={styles.input}></input>
                 </div>
                 <div>
                     <label htmlFor="Date"></label>
@@ -134,7 +142,7 @@ const Report = (props) =>{
                 </div>
                 <div>
                     <label htmlFor='temperature'></label>
-                    <input name='temperature' type='text' placeholder='temperature' defaultValue={currenttemp} className={styles.input} onChange={e=>changetemp(e.target.value)}></input>
+                    <input name='temperature' type='text' defaultValue={currenttemp} className={styles.input} onChange={e=>changetemp(e.target.value)}></input>
                 </div>
                 <select name="field" className={styles.input} required onChange={e=>changefield(e.target.value)}>
                     <option value='' disabled className={styles.option}>select a field</option>
@@ -166,11 +174,11 @@ const Report = (props) =>{
                 </select>
                 <div>
                     <label htmlFor='rate'></label>
-                    <input name='rate' type='text' placeholder='rate of application' className={styles.input} onChange={e=>changerate(e.target.value)} required></input>
+                    <input name='rate' type='text' placeholder='rate of application gallons/hour' className={styles.input} onChange={e=>changerate(e.target.value)} required></input>
                 </div>
                 <div>
                     <label htmlFor='gallons'></label>
-                    <input name='gallons' type='text' placeholder='gallons' className={styles.input} onChange={e=>changegallons(e.target.value)} required></input>
+                    <input name='gallons' type='text' placeholder='Total gallons of herbicide used' className={styles.input} onChange={e=>changegallons(e.target.value)} required></input>
                 </div>
                 <div>
                     <label htmlFor='targetedpests'></label>
@@ -187,11 +195,5 @@ const Report = (props) =>{
     )
 };
 
-const Newops = (props) =>{
-    const f = props.f;
-        f.map(function(n){
-            return(<option key={n.fieldid}>{`'${n.Name1}'`}</option>)
-        })
-}
 export default Report;
 
