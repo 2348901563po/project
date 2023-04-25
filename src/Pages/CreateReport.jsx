@@ -4,8 +4,12 @@ import { useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
 import { Usercontext } from "../App";
 
-const Report = () =>{
-    const fieldval = createContext();
+
+
+const Report = (props) =>{
+    const fieldval = useContext(Usercontext);
+    {console.log(fieldval)}
+
 
     /*Use 3rd Party API to get weather data */
     const [currenttemp, changecurrenttemp] = useState();
@@ -74,17 +78,9 @@ const Report = () =>{
     const [field, changefield] = useState(1);
 
 
-    const [emptyname, updateemptyname] = useState('');
-
-
     /*Handles the submission of the form through an API */
     const handlesubmit = (e)=>{
         e.preventDefault()
-
-        if(name==''){
-            updateemptyname('*Name is a required field')
-            return null
-        }
         fetch('http://localhost:1234/report', {
             method: 'POST',
             headers: {
@@ -123,9 +119,6 @@ const Report = () =>{
         )
     }, [])
 
-        /*Grabs the name of the current user */
-        const user = useContext(Usercontext);
-
     return(
         <div>
             <div className={styles.title}>Report</div>
@@ -133,9 +126,8 @@ const Report = () =>{
             <form action="http://localhost:1234/report" method='post' className={styles.form} onSubmit={handlesubmit}>
                 <div>
                     <label htmlFor="Name"></label>
-                    <input name="OperatorName" type='text' defaultValue={user} onChange={e=>changename(e.target.value)} className={styles.input} required></input>
+                    <input name="OperatorName" type='text' defaultValue={fieldval} onChange={e=>changename(e.target.value)} className={styles.input}></input>
                 </div>
-                <div className={styles.error}>{emptyname}</div>
                 <div>
                     <label htmlFor="Date"></label>
                     <input name="Date" type='text' defaultValue={date} onChange={e=>changedate(e.target.value)} className={styles.input}></input>

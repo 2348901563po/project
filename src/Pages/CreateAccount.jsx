@@ -33,6 +33,12 @@ const Newuser = () =>{
                 admin: `${admin}`,   
             })
         })
+
+        if(admin=='off'){
+            navigate('/report')
+        }if(admin=='on'){
+            navigate('/home')
+        }
         }
 
 

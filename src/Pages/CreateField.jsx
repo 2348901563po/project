@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../Styles/Createfield.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -25,12 +25,12 @@ const Field = () =>{
         })
         navigate('/home')
     }
-    
+
     return(
         <div className={styles.container}>
             <div className={styles.title}>Create Field</div>
             <form action="http://localhost:1234/field" method='post' className={styles.form} onSubmit={handlesubmit}>
-                <button onClick={navigate('/home')}>Back</button>
+                
                 <div>
                     <label htmlFor='fieldname'></label>
                     <input name='fieldname' placeholder='field name' type='text' className={styles.input} onChange={e=>changename(e.target.value)}></input>

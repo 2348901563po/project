@@ -40,17 +40,23 @@ const Auth = ({App}) =>{
 
 export const Usercontext = createContext('');
 function App() {
-  const [login, changelogin] = useState('Admin');
-  return (
+  const [login, changelogin] = useState('Hello World');
+
+  const childtoparent = (data)=>{
+    let data1 = `${data.first} ${data.last}`
+    changelogin(data1)
+  }
+  console.log(login)
+  return(
     <div>
       <Usercontext.Provider value={login}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Login childtoparent={childtoparent}/>} />
             <Route path="/user" element={<Newuser />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/field" element={<Field />} />
-            <Route path="/report" element={<Report />} />
+            <Route path="/report" element={<Report data={login}/>} />
             <Route path="/search" element={<Search />} />
             <Route path="/home" element={<Home />} />
             <Route path="/settings" element={<Settings />} />
