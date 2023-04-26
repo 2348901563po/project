@@ -16,9 +16,10 @@ const Search = () =>{
     const [comments, changecomments] = useState('');
     const [response, changeres] = useState('');
     const [results, changeresults] = useState('');
+    const [acres, changeacres] = useState('');
 
     const generatePDF = ()=>{
-        const Report = new JsPDF('portrait', 'pt', 'a4');
+        const Report = new JsPDF('portrait', 'pt', 'a2');
         Report.html(document.querySelector('#report')).then(()=>{
             Report.save('report.pdf');
         });
@@ -28,17 +29,27 @@ const Search = () =>{
         return(
             <div>
                 <div key={props.obj.idreports} className={styles.report} id='report'>
-                    <div>{`${props.obj.firstname} ${props.obj.lastname}`}</div>
+                    <div>Author: {`${props.obj.firstname} ${props.obj.lastname}`}</div>
+                    <br></br>
                     <div>Date: {`${props.obj.date}`}</div>
+                    <br></br>
                     <div>Field: {`${props.obj.Name1}`}</div>
+                    <br></br>
                     <div>Type of Herbicide: {`${props.obj.herbicide}`}</div>
+                    <br></br>
                     <div>Temperature: {`${props.obj.temperature}`}</div>
-                    <div>gallonssprayed: {`${props.obj.gallonssprayed}`}</div>
-                    <div>Rate: {`${props.obj.rate}`}</div>
+                    <br></br>
+                    <div>Total Gallons Sprayed: {`${props.obj.gallonssprayed}`} gallons</div>
+                    <br></br>
+                    <div>Rate: {`${props.obj.rate}`} gallons/hour</div>
+                    <br></br>
                     <div>Pests Targeted: {`${props.obj.peststargeted}`}</div>
+                    <br></br>
+                    <div>acres: {`${props.obj.acres}`}</div>
                     <div>Additional Comments: {`${props.obj.comments}`}</div>
                 </div>
                 <button onClick={generatePDF}>Convert to PDF</button>
+                <div className={styles.addspace}></div>
            </div>
         )
     }

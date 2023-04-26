@@ -41,9 +41,9 @@ const Newuser = () =>{
         })
 
         if(admin=='off'){
-            navigate('/report')
+            navigate('/')
         }if(admin=='on'){
-            navigate('/home')
+            navigate('/')
         }
         }
 

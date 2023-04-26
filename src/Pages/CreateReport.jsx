@@ -9,8 +9,6 @@ import { Usercontext } from "../App";
 const Report = (props) =>{
     const fieldval = useContext(Usercontext);
     {console.log(fieldval)}
-
-    const [refresh, changerefresh] = useState()
     /*Use 3rd Party API to get weather data */
     const [currenttemp, changecurrenttemp] = useState();
     useEffect(()=>{
@@ -75,7 +73,7 @@ const Report = (props) =>{
     const [gallons, changegallons] = useState('');
     const [pests, changepests] = useState('');
     const [comments, changecomments] = useState('');
-    const [field, changefield] = useState(27);
+    const [field, changefield] = useState(36);
     const [userid, changeuserid] = useState(fieldval.userid);
 
 
@@ -89,7 +87,7 @@ const Report = (props) =>{
             },
             body: JSON.stringify({
                 date: `${date}`,
-                temperature: `${temp}`,
+                temperature: `${currenttemp}`,
                 herbicide: `${herbicide}`, 
                 rate: `${rate}`,
                 gallons: `${gallons}`,
@@ -101,7 +99,6 @@ const Report = (props) =>{
             })
         })
         if(fieldval.admin=='false'){
-            changerefresh('true')
             navigate('/report')
         }if(fieldval.admin=='true'){
             navigate('/home')
